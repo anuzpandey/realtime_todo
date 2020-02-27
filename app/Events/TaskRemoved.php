@@ -11,7 +11,7 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
-class TaskCreated implements ShouldBroadcastNow
+class TaskRemoved implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -19,8 +19,9 @@ class TaskCreated implements ShouldBroadcastNow
     /**
      * Create a new event instance.
      *
-     * @param $task
+     *@param $task
      * @return void
+     *
      */
 
     public $task;
@@ -37,13 +38,12 @@ class TaskCreated implements ShouldBroadcastNow
      *
      * @return \Illuminate\Broadcasting\Channel|array
      */
-
     public function broadcastOn()
     {
-        return new Channel('newTask');
+        return new Channel('taskRemoved');
     }
 
     public function broadcastAs(){
-        return 'task-created';
+        return 'task-removed';
     }
 }
